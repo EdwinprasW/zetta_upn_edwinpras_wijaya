@@ -6,7 +6,7 @@ const book = {
     "order": 12
 }
 
-Purchase(book, 30, 10);
+kreditNich((Purchase(book, 30, 10)), 12);
 
 function Purchase({ name, price, inStock, stock, order }, dc, tax) {
 
@@ -53,6 +53,29 @@ function Purchase({ name, price, inStock, stock, order }, dc, tax) {
         console.log('semua pesanan terbeli :D!');
         console.log('sisa stock buku adalah ', i, ' pcs');
     }
+
+    return totalPrice;
+}
+
+function kreditNich(totalPrice, monthOfCredits) {
+    const payCredit = totalPrice / monthOfCredits;
+    let creditsPayment = totalPrice;
+    let i = monthOfCredits;
+
+    CreditRecord = [];
+    while (i > 0) {
+        i -= 1;
+        creditsPayment = creditsPayment - payCredit
+        CreditRecord.push({
+            bulan: Math.abs(i - monthOfCredits),
+            kreditPerBulan: payCredit,
+            sisaPembayaran: creditsPayment
+        })
+
+    }
+
+    console.log('Data Cicilan : ');
+    console.log(CreditRecord);
 
     return 0;
 }
